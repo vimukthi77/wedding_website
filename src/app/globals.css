@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens
+   ============================================================ */
+@layer base {
+  :root {
+    --ivory: #fffdf7;
+    --pearl: #f9f6f2;
+    --cream: #f7e8d0;
+    --blush: #f8e7e7;
+    --beige: #e8d7b9;
+    --rose-gold: #e6b7a9;
+    --champagne: #d4af37;
+    --bronze: #b08d57;
+    --mauve: #c9a9a6;
+    --burgundy: #7a3e48;
+    --ink: #3d2b1f;
+
+    --font-script: "Great Vibes", cursive;
+    --font-serif: "Cormorant Garamond", serif;
+    --font-display: "Playfair Display", serif;
+    --font-cinzel: "Cinzel", serif;
+    --font-body: "Lato", sans-serif;
+    --font-garamond: "EB Garamond", serif;
+
+    /* modern, consistent spacing rhythm */
+    --section-pad: clamp(4.5rem, 10vw, 9rem);
+    --container: 80rem;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-body);
+    background-color: var(--ivory);
+    color: var(--ink);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    overflow-x: hidden;
+    background: var(--ivory);
+    min-height: 100dvh;
+  }
+}
+
+/* ============================================================
+   Font utility classes
+   ============================================================ */
+.font-script { font-family: var(--font-script); }
+.font-serif-luxury { font-family: var(--font-serif); }
+.font-display-luxury { font-family: var(--font-display); }
+.font-cinzel { font-family: var(--font-cinzel); }
+.font-garamond { font-family: var(--font-garamond); }
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-12px) rotate(2deg); }
+  50% { transform: translateY(-6px) rotate(-1deg); }
+  75% { transform: translateY(-14px) rotate(1deg); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.2); }
+}
+@keyframes border-dance {
+  0%, 100% { border-color: rgba(212, 175, 55, 0.4); }
+  50% { border-color: rgba(212, 175, 55, 0.8); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 3s linear infinite; }
+.animate-border { animation: border-dance 3s ease-in-out infinite; }
+
+/* ============================================================
+   Modern reusable styles
+   ============================================================ */
+
+/* shimmering gold text */
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #b08d57, #d4af37, #f5e6a3, #d4af37, #b08d57);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* modern glassmorphism */
+.glass-luxury {
+  background: rgba(255, 253, 247, 0.62);
+  backdrop-filter: blur(22px) saturate(1.1);
+  -webkit-backdrop-filter: blur(22px) saturate(1.1);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+/* petal shape */
+.petal { border-radius: 150% 0 150% 0; }
+
+/* modern luxury card with soft lift */
+.luxury-card {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.luxury-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 70px rgba(212, 175, 55, 0.16);
+}
+
+/* ============================================================
+   Form, scrollbar, selection
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--pearl); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #d4af37, #e6b7a9);
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--ink);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+button, a, input, textarea, select { transition: all 0.3s ease; }
+
+/* Larger, comfortable tap targets on touch devices (mobile friendly) */
+@media (hover: none) and (pointer: coarse) {
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Responsive hero name */
+@media (max-width: 640px) {
+  .hero-name { font-size: clamp(2.5rem, 14vw, 5rem); }
+}
+
+/* ============================================================
+   Accessibility — respect reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
