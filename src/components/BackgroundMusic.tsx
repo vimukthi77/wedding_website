@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { VolumeX } from "lucide-react";
 
-const VOLUME = 0.90;
+const VOLUME = 0.9;
 
 const BackgroundMusic: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);

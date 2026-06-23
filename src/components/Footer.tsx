@@ -297,7 +297,7 @@ const Footer: React.FC = () => {
           className="text-center mt-10 pt-6"
           style={{ borderTop: '1px solid rgba(212,175,55,0.1)' }}
         >
-          <p className="font-garamond italic text-xs" style={{ color: 'rgba(9, 9, 9, 0.5)' }}>
+          <p className="font-garamond  italic text-xs" style={{ color: 'rgba(9, 9, 9, 0.5)' }}>
             Crafted with love for a once-in-a-lifetime celebration
           </p>
         </motion.div>
