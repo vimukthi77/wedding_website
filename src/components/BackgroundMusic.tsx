@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { VolumeX } from "lucide-react";
 
-const VOLUME = 0.9;
+const VOLUME = 0.7;
 
 const BackgroundMusic: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -66,13 +66,22 @@ const BackgroundMusic: React.FC = () => {
 
   return (
     <>
+      {/* NOTE: do NOT use display:none here — iOS Safari refuses to play
+          media elements that are display:none. Keep it rendered but invisible. */}
       <audio
         ref={audioRef}
         loop
         playsInline
         preload="auto"
-        src="/images/bgsound.mpeg"
-        style={{ display: "none" }}
+        src="/images/bgsound.mp3"
+        style={{
+          position: "fixed",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+          left: -9999,
+        }}
       />
 
       <motion.button
